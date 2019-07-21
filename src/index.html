@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Github pages test with webpack</title>
+	<meta charset="utf-8">
+</head>
+<body>
+	<h1>Github pages test with webpack</h1>
+
+	<p>
+		OK, I have a project folder, with /src and /dist.
+	</p>
+	<p>
+		The project folder has a git repo, and /dist has a separate repo w/ a .gitignore that includes 'dist'. So the project folder will have a different github repo than the actual github pages. So I can work on the /src code, commit it and bundle it, then commit and push the /dist to the github pages separtely.
+	</p>
+	<p>
+		The editor only needs the project folder. But I'll need 2 terminals, one for each repo.
+	</p>
+	<p>
+		'gh-pages' is cool, but that won't work for this as far as I can tell.
+	</p>
+
+	<pre>
+/rphunt.github.io (the distribution folder)
+--/dist/bundle.js
+--/dist/index.html
+--/dist/README.md
+--/src/index.js
+--/src/index.html
+--/src/index.scss
+	</pre>
+	<script type="text/javascript" src="bundle.js"></script>
+</body>
+</html>
