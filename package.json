@@ -24,5 +24,8 @@
   "bugs": {
     "url": "https://github.com/rphunt/gitpages_src/issues"
   },
-  "homepage": "https://github.com/rphunt/gitpages_src#readme"
+  "homepage": "https://github.com/rphunt/gitpages_src#readme",
+  "dependencies": {
+    "lodash": "^4.17.15"
+  }
 }
