@@ -1,7 +1,7 @@
 {
   "name": "githubpages",
   "version": "1.0.0",
-  "description": "",
+  "description": "webpack project for github pages",
   "main": "index.js",
   "scripts": {
     "build": "webpack -p"
@@ -16,5 +16,13 @@
     "style-loader": "^0.23.1",
     "webpack": "^4.33.0",
     "webpack-cli": "^3.3.4"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rphunt/gitpages_src.git"
+  },
+  "bugs": {
+    "url": "https://github.com/rphunt/gitpages_src/issues"
+  },
+  "homepage": "https://github.com/rphunt/gitpages_src#readme"
 }

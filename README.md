@@ -7,7 +7,9 @@ this is intended for a code repo
 node_modules and dist are ignored
 seems to be missing from gituhub, instead there were ghpages04 test, so that was deleted
 git init
-
+crreate repo online
+git remote add origin https://github.com/rphunt/gitpages_src.git
+git push -u origin master
 
 
 
