@@ -12,11 +12,9 @@ npm i -D gulp-babel@next @babel/core @babel/preset-env
 */
 
 /*
-This is a very basic gulp flow.
-Transpiles SCSS from /scss to CSS in /src_css
-Minifies CSS from /src_css to /css
-Minifies JS from /src_js to /js
-Can watch SCSS for changes and transpile
+Transpiles and minifies SCSS from /src/scss to CSS to /public/css
+Transpiles and minifies JS from /src/es to /public/js
+Copies index.html file to /public
 */
 
 const { src, dest, series, parallel, watch } = require('gulp');
@@ -29,19 +27,11 @@ const babel = require('gulp-babel');
 /* functions */
 
 /*
-Transpile SCSS from /scss into CSS and place in /src_css
+Transpile and minify SCSS from /scss and place in /src_css
 */
-const transpilescss = () => {
-    return src('./scss/**/*.scss')
+const transminscss = () => {
+    return src('./src/scss/**/*.scss')
     .pipe(sass())
-    .pipe(dest('./src_css'));
-};
-
-/*
-Minify CSS from /src_css and place in /css
-*/
-const compresscss = () => {
-  return src('./src_css/**/*.css')
     .pipe(uglifycss({
       "maxLineLen": 0,
       "uglyComments": true
@@ -49,50 +39,29 @@ const compresscss = () => {
     .pipe(dest('./public/css'));
 };
 
-
 /*
-  Transpile ES6+ from /js into ES5 and place in /src_js
+TRanspile and minify JS from /es and place in /js
 */
-const transpilejs = () => {
-  return src('./es/**/*.js')
-    .pipe(babel({
-            presets: ['@babel/env']
-        }))
-    .pipe(dest('./src_js'));
-};
-
-
-
-/*
-Minify JS from /src_js and place in /js
-*/
-const compressjs = () => {
+const transminjs = () => {
   return pump([
-       src('./src_js/**/*.js'),
+       src('./src/es/**/*.js'),
+       babel({
+               presets: ['@babel/env']
+       }),
        uglify(),
        dest('./public/js')
       ]
     );
 };
 
-/*
-Watch for changes in SCSS and transpile
-*/
-const watchcss = () => {
-  return watch('./scss/**/*.scss', transpilescss);
-};
 
 const copy = () => {
-  return src('./src/**/*.html')
+  return src('./src/*.html')
     .pipe(dest('./public'));
 };
 
 /*
-Transpile the SCSS
-Minify the CSS
-Minify the JS
+Transpile and minify the SCSS & JS
+Copy over to /public
 */
-exports.all = series(transpilescss, transpilejs, compresscss, compressjs, copy);
-
-// default will watch
-exports.default = watchcss;
+exports.all = series(transminscss, transminjs, copy);
